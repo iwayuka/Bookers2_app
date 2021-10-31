@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   # トップのURLを「https://〜amazonaws.com/」で表示されるようにする（ルート設定）
   root to: 'homes#top'
 
+  # 「About」ページのルーティング設定
+  get 'home/about' => 'homes#about'
+
   # Bookのルーティング設定
   resources :books
 
