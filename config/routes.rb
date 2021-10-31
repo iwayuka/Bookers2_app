@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  get 'users/index'
-  get 'users/show'
   # ユーザー認証機能のルーティング設定
   devise_for :users
 
