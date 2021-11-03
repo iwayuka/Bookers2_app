@@ -1,0 +1,44 @@
+
+  <div class="container px-5 px-sm-0">
+    <div class="row">
+      <div class="col-md-3">
+        <!-- Current User情報の表示 -->
+        <h2>User info</h2>
+        <!-- urrent User画像の挿入 -->
+        <table class="table">
+          <tbody>
+            <tr><%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "60x60" %></tr>
+            <tr>
+              <th>name</th>
+              <th><%= user.name %></th>
+            </tr>
+            <tr>
+              <th>introduction</th>
+              <th><!-- 自己紹介文を表示できるようにする -->
+              </th>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- User情報の編集ボタン -->
+        <div class="row">
+          <a class="btn btn-outline-secondary btn-block fas fa-user-cog edit_user_35506" href=""></a>
+        </div>
+
+        <!-- Bookの新規投稿の作成 -->
+        <h2 class="mt-3">New book</h2>
+        <!-- form_with部分 -->
+        <%= form_with model:book, local:true do |f| %>
+          <label for="book_title">Title</label>
+        <div>
+          <%= f.text_field :title %>
+        </div>
+          <label for="book_opinion">Opinion</label>
+        <div>
+          <%= f.text_area :body %>
+        </div>
+        <div>
+          <%= f.submit "Create Book", class:"btn btn-success" %>
+        </div>
+        <% end %>
+      </div>
