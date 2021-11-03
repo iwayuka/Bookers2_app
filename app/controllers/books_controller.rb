@@ -1,7 +1,6 @@
 class BooksController < ApplicationController
 
   def index
-    @books = Book.all
     # Viewへ渡すためのインスタンス変数に空のモデルオブジェクトを生成。
     @book = Book.new
 
@@ -12,8 +11,8 @@ class BooksController < ApplicationController
     book = Book.new(book_params)
     # ２. データをデータベースに保存するためのsaveメソッド実行
     book.save
-    # ３. bookのshowを作ってないので一度topへリダイレクト
-    redirect_to 'root'
+    # ３. トップ画面へリダイレクト
+    redirect_to '/'
   end
 
   def show
