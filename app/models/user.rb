@@ -6,5 +6,6 @@ class User < ApplicationRecord
 
   #association => Book
   has_many :books, dependent: :destroy
+  attachment :profile_image
 
 end
