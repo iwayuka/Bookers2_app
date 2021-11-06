@@ -71,3 +71,6 @@ gem 'jquery-rails'
 # 画像投稿編集用gem
 gem "refile", require: "refile/rails", github: 'manfe/refile'
 gem "refile-mini_magick"
+
+# pageメソッド用のgem
+gem 'kaminari'
