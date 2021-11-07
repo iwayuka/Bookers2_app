@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
-  
-  
-  
+
+
+
   def index
     @users = User.all
     @user = User.find(current_user.id)
@@ -19,8 +19,12 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    redirect_to user_path(@user.id)
+    # バリテーション の実行
+    if @user.update(user_params)
+      redirect_to user_path(@user.id), notice: 'You have updated user successfully.'
+    else
+      render :edit
+    end
   end
 
    private

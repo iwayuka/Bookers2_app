@@ -8,4 +8,9 @@ class User < ApplicationRecord
   has_many :books, dependent: :destroy
   attachment :profile_image
 
+  # バリテーション の記述（USERないでは「name」に付与）
+  validates :name, presence: true
+  # 以上
+
+
 end
