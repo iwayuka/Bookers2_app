@@ -4,12 +4,17 @@
     <title>Bookers2</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="csrf-token" content="d06lUySiPyiUWnPM/tJ5X+YIzvnkvqaJkyJz8rPhFhnR37hXDduCx3TIFhdLpKjenQpGAxtJk6e4DU+cENBWFw==">
+    <!-- Font Awesome の使用リンク -->
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    
+    <!-- header の挿入 -->
     <header>
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
@@ -19,25 +24,66 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-              <% if user_signed_in? %>
-                <li><%= link_to " Home", root_path, class:"fas fa-home nav-link text-light" %></li>
-                <li><%= link_to " Users", users_path, class:"fas fa-home nav-link text-light" %></li>
-                <li><a class="fas fa-book-open nav-link text-light" href="/books"> Books</a></li>
-                <li><%= link_to "Log out", destroy_user_session_path, method: :delete, class:"fas fa-sign-out-alt nav-link text-light" %></li>
+              <% if user_signed_in? %><!-- ←現在ログインしているかどうかの記述 -->
+                <!-- ログイン状態のヘッダー表示-->
+                <li>
+                  <%= link_to user_path(current_user.id), class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-home"></i> Home <!-- ←アイコンをリンク付けする場合は、このように記述すること -->
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to users_path, class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-users"></i> Users
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to books_path, class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-book-open"></i> Books
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to destroy_user_session_path, class:"nav-link text-light", method: :delete do %>
+                    <i class="fas fa-sign-out-alt"></i> Log out
+                  <% end %>
+                </li>
               <% else %>
-                <li><%= link_to " Home", root_path, class:"fas fa-home nav-link text-light" %></li>
-                <li><%= link_to " About", home_about_path, class:"fas fa-sign-in-alt nav-link text-light" %></li>
-                <li><%= link_to " Sign up", new_user_registration_path, class:"fas fa-user-plus nav-link text-light" %></li>
-                <li><%= link_to " Log in", new_user_session_path, class:"fas fa-sign-in-alt nav-link text-light" %></li>
+                <!-- ログアウト状態のヘッダー表示 -->
+                <li>
+                  <%= link_to root_path, class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-home"></i> Home
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to home_about_path, class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-link"></i> About
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_registration_path, class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-user-plus"></i> Sign up
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to new_user_session_path, class:"nav-link text-light", method: :get do %>
+                    <i class="fas fa-sign-in-alt"></i> Log in
+                  <% end %>
+                </li>
               <% end %>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-
-    <%= yield %>
-
+    <main>
+      <!-- フラッシュメッセージの挿入 -->
+      <p class="notice"><%= flash[:notice] %>
+      
+      <!-- content の挿入 -->
+      <%= yield %>
+    
+    </main>
+    
+    <!-- footer の挿入 -->
     <footer>
       <div class="container mt-5">
         <div class="row">
