@@ -1,7 +1,4 @@
 class UsersController < ApplicationController
-
-
-
   def index
     @users = User.all
     @user = User.find(current_user.id)
@@ -15,6 +12,13 @@ class UsersController < ApplicationController
 
   def edit
      @user = User.find(params[:id])
+     # URLを直接入力しても、投稿ユーザーとカレントユーザーが同じで無ければ、編集できないようにする記述
+    if @user.id == current_user
+      render "edit"
+    else
+      redirect_to user_path(current_user.id)
+    end
+    # 以上
   end
 
   def update
