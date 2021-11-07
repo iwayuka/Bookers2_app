@@ -30,6 +30,13 @@ class BooksController < ApplicationController
 
   def edit
     @book = Book.find(params[:id])
+    # URLを直接入力しても、投稿ユーザーとカレントユーザーが同じで無ければ、編集できないようにする記述
+    if @book.user == current_user 
+      render "edit"
+    else
+      redirect_to books_path
+    end
+    # 
 
   end
 
