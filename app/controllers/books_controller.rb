@@ -19,7 +19,7 @@ class BooksController < ApplicationController
     # かつ、バリテーション の実行
     if @book.save
       # トップ画面へリダイレクトから投稿した詳細画面へリダイレクトに記述の変更
-      redirect_to book_path(@book.id), notice: 'Book was successfully created.'
+      redirect_to book_path(@book.id), notice: 'You have created book successfully.'
     else
       # データベースの保存の実行ができなかった場合、「今の画面」へ戻る
       @books = Book.all
@@ -29,9 +29,8 @@ class BooksController < ApplicationController
   end
 
   def show
-    @book = Book.new
     @book = Book.find(params[:id])
-    @user = User.find(current_user.id)
+    @user = User.find(@book.user_id)
 
   end
 
@@ -51,7 +50,7 @@ class BooksController < ApplicationController
     @book = Book.find(params[:id])
     # バリテーション の実行
     if @book.update(book_params)
-      redirect_to book_path(@book.id), notice: 'Book was successfully updated.'
+      redirect_to book_path(@book.id), notice: 'You have updated book successfully.'
     else
       render :edit
     end
@@ -68,11 +67,7 @@ class BooksController < ApplicationController
 
   private
   def book_params
-    params.require(:book).permit(:title, :body)
-  end
-
-    def user_params
-    params.require(:user).permit(:name, :profile_image, :body)
+    params.require(:book).permit(:title, :body, :user_id)
   end
 
 end
