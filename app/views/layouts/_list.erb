@@ -1,12 +1,13 @@
 <!-- 部分テンプレートの設定 -->
 
 <div class="col-md-3">
-  <!-- Current User情報の表示 -->
+  <!-- User情報の表示 -->
   <h2>User info</h2>
-  <!-- urrent User画像の挿入 -->
+  <!-- User画像の挿入 -->
+  <%= attachment_image_tag user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "63x63" %>
   <table class="table">
     <tbody>
-      <tr><%= attachment_image_tag user, :profile_image, :fill, 63, 63, format: 'jpeg', fallback: "no_image.jpg" %></tr>
+      <tr></tr>
       <tr>
         <th>name</th>
         <th><%= user.name %></th>

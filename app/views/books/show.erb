@@ -11,7 +11,12 @@
   		<h2>Book detail</h2>
   		<table class="table">
   		  <tbody><tr>
-          <td><!-- ユーザー画像 --></td>
+          <td><!-- ユーザーの画像の挿入かつユーザー情報へのリンク -->
+            <%= link_to user_path(@user), method: :get do %>
+            <%= attachment_image_tag @book.user, :profile_image, format: 'jpeg', fallback: "no_image.jpg", size: "40x40" %>
+            <br />
+            <%= @user.name %>
+            <% end %></td>
           <td><%= @book.title %></td>
           <td><%= @book.body %></td>
 

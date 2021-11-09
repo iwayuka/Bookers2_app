@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
   # ログインしていない状況では、ログイン画面に移動するように指定の記述
-  before_action :authenticate_user!
+  before_action :authenticate_user!,except: [:top, :about]
   # 以上
 
   before_action :configure_permitted_parameters, if: :devise_controller?

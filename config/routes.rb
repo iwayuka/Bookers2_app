@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about'
 
   # Bookのルーティング設定
-  resources :books
+  resources :books, only: [:index, :create, :show, :edit, :update, :destroy]
 
   # Userのルーティング設定
   resources :users, only: [:index, :show, :edit, :update]
