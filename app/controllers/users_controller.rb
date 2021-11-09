@@ -6,7 +6,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(@book_user.])
+    @user = User.find(params[:id])
     # ユーザーが投稿したデータのみを取得する記述 (※使用の際は、gem「kaminari」をインストールすること)
     @books = @user.books.page(params[:page]).reverse_order
     @book = Book.new
