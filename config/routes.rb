@@ -9,10 +9,10 @@ Rails.application.routes.draw do
   get 'home/about' => 'homes#about'
 
   # Bookのルーティング設定
-  resources :books
+  resources :books, only: [:index, :create, :show, :edit, :update, :destroy]
 
   # Userのルーティング設定
-  resources :users, only: [:index, :show, :edit]
+  resources :users, only: [:index, :show, :edit, :update]
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
