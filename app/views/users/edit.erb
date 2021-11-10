@@ -7,6 +7,22 @@
         <!-- 編集画面の記述-->
         <h2>User info</h2>
 
+
+      <!-- モデルにバリデーションをかけたときに、発生したエラーの内容を確認できる記述-->
+      <% if @user.errors.any? %>
+      <div id="error_explanation">
+        <h3><%= @user.errors.count %> errors prohibited this obj from being saved:</h3>
+        <ul>
+          <% @user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+      <% end %>
+      <!-- 以上 -->
+
+
+
         <!-- form_withの記述 -->
         <%= form_with model:@user, local:true do |f| %>
         <div class="form-group">

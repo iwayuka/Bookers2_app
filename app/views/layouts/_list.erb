@@ -22,15 +22,10 @@
   <!-- User情報の編集ボタン -->
   <div class="row">
 
-    <% if user == current_user %>
-      <%= link_to edit_user_path(current_user.id), class:"btn btn-outline-secondary btn-block", method: :get do %>
+      <%= link_to edit_user_path(user), class:"btn btn-outline-secondary btn-block", method: :get do %>
         <i class="fas fa-user-cog"></i>
       <% end %>
-    <% else %>
-      <%= link_to user_path(current_user.id), class:"btn btn-outline-secondary btn-block", method: :get do %>
-        <i class="fas fa-user-cog"></i>
-      <% end %>
-    <% end %>
+
   </div>
 
   <!-- Bookの新規投稿の作成 -->
